@@ -14,6 +14,7 @@ export default class App extends Component {
       view:false
     }
   }
+  //实现添加功能
    addTodo = (e)=>{
        let {items} = this.state
        if(e.key!=='Enter') return
@@ -26,11 +27,13 @@ export default class App extends Component {
        e.target.value=''
   }
 
+  //实现删除功能
   deleteTodo = (id)=>{
        let {items} = this.state
        items=items.filter(item=>item.id!==id)
        this.setState({items})
   }
+  //已经完成的
   hasComple=(todo)=>{
       let {items} = this.state
       items=items.map(item=>{
@@ -41,6 +44,7 @@ export default class App extends Component {
        })
        this.setState({items})
   }
+  //展示所有，将要做的，已经实现的3种
   changeView=(flag)=>{
     this.setState({flag})
     let {items,itemvs} = this.state
@@ -58,11 +62,13 @@ export default class App extends Component {
     }
     this.setState({itemvs})
   }
+  //清除已经完成的
   clearHasCompleted=()=>{
         let {items} = this.state
         items=items.filter(item=>!item.hasComplete)
         this.setState({items})
   }
+  //全选
   selectAllTodo=()=>{
      let {items,view}=this.state
      if(!view){
@@ -78,6 +84,7 @@ export default class App extends Component {
      }
      this.setState({items,view:!view})
   }
+  //通过双击实现编辑
   Edittodo=(todo)=>{
      let {items} =this.state
      items=items.map(item=>{
